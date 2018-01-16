@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ROOT NEED
+
 server=$(hostname)
 mail=unknown@unknown.com
 
