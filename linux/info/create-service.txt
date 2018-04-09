@@ -1,0 +1,29 @@
+# Normally service units are located under /etc/systemd/system
+# Services are controlled by systemctl and wrapped by service
+# Example
+
+$ sudo touch /etc/systemd/system/myservice.service
+$ sudo vim /etc/systemd/system/myservice.service
+
+[Unit]
+Description=Test Service
+Documentation=Url
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+
+[Service]
+Type=simple
+PIDFile=/var/run/service.pid
+User=someuser
+Group=somegroup
+Environment=extra vars
+ExecStart=execution for start script or program
+ExecStop=execution for stop script or program
+Restart=on-failure
+SyslogIdentifier=
+
+[Install]
+WantedBy=multi-user.target
+
+$ sudo systemctl daemon-reload
+$ sudo service myservice start

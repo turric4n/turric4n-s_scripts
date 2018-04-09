@@ -1,0 +1,17 @@
+# Elevate user to SUDOERS
+
+$ sudo usermod -aG sudo <username>
+
+# Add user
+
+$ useradd user
+$ passwd user
+
+# Add user into group
+
+$ useradd -G admins,webadmin,developers user
+
+# Add user with expiration
+
+$ useradd -e 2019-03-27 user
+

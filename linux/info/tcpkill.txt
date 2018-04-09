@@ -1,0 +1,21 @@
+# KILL TCP CONNECTION
+tcpkill command
+
+Use tcpkill command to kill specified in-progress TCP connections. It is useful for libnids-based applications which require a full TCP 3-whs for TCB creation.
+Syntax:
+
+tcpkill -i eth0 { expression }
+Examples:
+(a) Kill all outgoing ftp (port 21) connection:
+
+tcpkill -i eth0 port 21
+(b) Kill all all packets arriving at or departing from host 192.168.1.2 (host12.nixcraft.com)
+
+tcpkill host 192.168.1.2
+OR
+
+tcpkill host host12.nixcraft.com
+
+(c) To kill all IP packets between 192.168.1.2 and any host except 192.168.1.111, type the following:
+
+tcpkill ip host 192.168.1.2 and not 192.168.1.111

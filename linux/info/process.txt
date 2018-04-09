@@ -1,0 +1,26 @@
+# Get logged users
+$ who
+
+# Kill an user session
+
+$ pkill -KILL -u luser
+
+$ pkill command – Kill processes by name.
+
+$ kill command – terminate or signal a process.
+
+#To halt or stop a user called luser :
+
+$ pkill -STOP -u luser
+
+# To resume a user called luser :
+
+$ pkill -CONT -u luser
+
+# To kill all php-cgi process owned by luser user :
+
+$ pkill -KILL -u luser php-cgi
+
+# To list session 
+
+$ ps -ft pts/6

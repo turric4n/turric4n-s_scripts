@@ -1,0 +1,75 @@
+# Join Ubuntu Server into AD
+
+# NTP Client
+$ sudo apt-get install ntpdate
+$ sudo ntpdate -q your_domain_name
+$ sudo ntpdate your_domain_name
+
+# Kerberos dependencies
+$ sudo apt-get install samba krb5-config krb5-user winbind libpam-winbind libnss-winbind
+
+# Kerberos first ticket auth 
+$ kinit ad_admin_user
+$ klist
+
+# Join Samba4 into AD DC
+mv /etc/samba/smb.conf /etc/samba/smb.conf.initial
+nano /etc/samba/smb.conf 
+[global]
+workgroup = domain
+realm = domain.local
+netbios name = hostname
+security = ADS
+dns forwarder = 192.168.1.1
+idmap config * : backend = tdb        
+idmap config *:range = 50000-1000000
+template homedir = /home/%D/%U
+template shell = /bin/bash
+winbind use default domain = true
+winbind offline logon = false
+winbind nss info = rfc2307
+winbind enum users = yes
+winbind enum groups = yes
+vfs objects = acl_xattr
+map acl inherit = Yes
+store dos attributes = Yes
+
+# Restart samba services
+
+$ sudo systemctl restart smbd nmbd winbind
+$ sudo systemctl stop samba-ad-dc
+$ sudo systemctl enable smbd nmbd winbind
+
+# Join into domain
+
+$ sudo net ads join -U ad_admin_user
+
+# Configure AD Auth
+
+$ sudo nano /etc/nsswitch.conf
+passwd:         compat winbind
+group:          compat winbind
+
+# Show windbind connector users and groups
+
+$ wbinfo -u
+$ wbinfo -g
+
+$ sudo getent passwd| grep your_domain_user
+$ sudo getent group|grep 'domain admins'
+
+$ sudo pam-auth-update
+
+# Add SUDO privileges to user 
+
+$ sudo usermod -aG sudo your_domain_user
+
+# Add SUDO privileges to group
+
+$ sudo nano /etc/sudoers
+
+%YOUR_DOMAIN\\your_domain\  group       		 ALL=(ALL:ALL) ALL
+
+
+
+
