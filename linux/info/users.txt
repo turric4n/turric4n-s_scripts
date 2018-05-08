@@ -15,3 +15,12 @@ $ useradd -G admins,webadmin,developers user
 
 $ useradd -e 2019-03-27 user
 
+# Get Users
+
+$ cat /etc/passwd 
+
+# Get Groups
+
+$ groups
+
+$ groups

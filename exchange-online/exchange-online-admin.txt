@@ -1,0 +1,41 @@
+# Exchange Admins only
+
+# Prompt for credential
+$UserCredential = Get-Credential
+
+# Login into the service
+$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://outlook.office365.com/powershell-liveid/ -Credential $UserCredential -Authentication Basic -AllowRedirection 
+
+# Import Session
+Import-PSSession $Session
+
+# Create 
+New-DistributionGroup -Name "ITDepartment" -PrimarySmtpAddress -Alias -MemberDepartRestriction closed -MemberJoinRestriction closed -Members chris@contoso.com,michelle@contoso.com,laura@contoso.com,julia@contoso.com
+
+# Add proxy address into distribution group
+Set-distributiongroup Distr -EmailAddresses @{add="distr@contoso.com"}
+
+# Add member into distribution group
+Add-DistributionGroupMember Distr -Member "member@contoso.com" 
+
+# Add mailbox permission
+Add-MailboxPermission -Identity "Mailbox" -AutoMapping $true -User "User"
+
+# New contact 
+New-MailContact -DisplayName "User" -Alias "UserAlias" -ExternalEmailAddress "user@contoso.com"
+
+# Add member into distribution group
+# Add-DistributionGroupMember -Identity mylist@contoso.com -Member "user@contoso.com"
+
+# Export mailboxes into CSV
+
+foreach($mailbox in Get-Mailbox){
+    $addresses = $mailbox.EmailAddresses 
+    $addresses | Out-File .\mailboxes.csv -Append
+    }
+
+# Enable autoFWD 
+Set-Mailbox -Identity "user@contoso.com" -DeliverToMailboxAndForward $true -ForwardingSMTPAddress "boss@contoso.com"
+
+# Trace mails
+Get-MessageTrace -RecipientAddress "mail@contoso.com" -SenderAddress "sender@outcontoso.com"

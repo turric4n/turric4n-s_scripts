@@ -25,5 +25,6 @@ SyslogIdentifier=
 [Install]
 WantedBy=multi-user.target
 
+$ sudo systemctl enable publishapi.service
 $ sudo systemctl daemon-reload
 $ sudo service myservice start
