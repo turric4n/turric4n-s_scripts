@@ -1,0 +1,109 @@
+inherited BaaSToDoList_iPhone: TBaaSToDoList_iPhone
+  ClientHeight = 460
+  DesignerMasterStyle = 3
+  inherited ToolBar1: TToolBar
+    Size.Height = 44.000000000000000000
+    inherited ButtonAdd: TButton
+      Position.X = 271.000000000000000000
+      Size.Width = 44.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+    inherited ButtonBack: TButton
+      Size.Width = 60.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+    inherited Label1: TLabel
+      Size.Height = 44.000000000000000000
+    end
+    inherited SpeedButton2: TSpeedButton
+      Position.X = 224.000000000000000000
+      Size.Width = 42.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+    inherited SpeedButton1: TSpeedButton
+      Position.X = 182.000000000000000000
+      Size.Width = 42.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+  end
+  inherited TabControl1: TTabControl
+    Size.Height = 416.000000000000000000
+    inherited TabItemList: TTabItem
+      inherited Layout5: TLayout
+        inherited ToolBar4: TToolBar
+          Size.Height = 44.000000000000000000
+          inherited RefreshList: TButton
+            Position.X = 1.000000000000000000
+            Size.Width = 44.000000000000000000
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+    end
+    inherited TabItemDetails: TTabItem
+      inherited EditTitle: TEdit
+        Size.Height = 30.000000000000000000
+      end
+      inherited MemoDescription: TMemo
+        Size.Height = 283.000000000000000000
+        Viewport.Width = 312.000000000000000000
+        Viewport.Height = 275.000000000000000000
+      end
+      inherited Layout3: TLayout
+        Position.Y = 323.000000000000000000
+        inherited ToolBar3: TToolBar
+          Size.Height = 44.000000000000000000
+          inherited Button2: TButton
+            Size.Width = 60.000000000000000000
+            Size.Height = 44.000000000000000000
+          end
+          inherited Button3: TButton
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+    end
+    inherited TabItemAdd: TTabItem
+      inherited Layout1: TLayout
+        inherited BottomToolbar: TToolBar
+          Size.Height = 44.000000000000000000
+          inherited ButtonSaveAdd: TButton
+            Size.Height = 44.000000000000000000
+          end
+          inherited ButtonCancelAdd: TButton
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+      inherited MemoAddDescription: TMemo
+        Size.Height = -34.000000000000000000
+        Viewport.Width = 42.000000000000000000
+        Viewport.Height = 0.000000000000000000
+      end
+      inherited EditAddTitle: TEdit
+        Size.Height = 30.000000000000000000
+      end
+    end
+    inherited TabItemEdit: TTabItem
+      inherited EditEditTitle: TEdit
+        Size.Height = 30.000000000000000000
+      end
+      inherited Layout2: TLayout
+        inherited ToolBar2: TToolBar
+          Size.Height = 44.000000000000000000
+          inherited ButtonEditCancel: TButton
+            Size.Height = 44.000000000000000000
+          end
+          inherited ButtonEditSave: TButton
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+      inherited MemoEditContent: TMemo
+        Size.Height = -34.000000000000000000
+        Viewport.Width = 42.000000000000000000
+        Viewport.Height = 0.000000000000000000
+      end
+    end
+  end
+end

@@ -24,3 +24,5 @@ $ cat /etc/passwd
 $ groups
 
 $ groups
+
+$ grep '^sudo:.*$' /etc/group | cut -d: -f4

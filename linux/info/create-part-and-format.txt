@@ -1,0 +1,4 @@
+sudo parted -a opt /dev/sda mkpart primary ext4 0% 100%
+sudo mkfs.ext4 -L datapartition /dev/sda1
+sudo lsblk --fs
+sudo lsblk -o NAME,FSTYPE,LABEL,UUID,MOUNTPOINT

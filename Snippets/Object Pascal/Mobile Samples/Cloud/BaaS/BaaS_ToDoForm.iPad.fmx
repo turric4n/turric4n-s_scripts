@@ -1,0 +1,122 @@
+inherited BaaSToDoList_iPad: TBaaSToDoList_iPad
+  ClientHeight = 1004
+  ClientWidth = 768
+  DesignerMasterStyle = 3
+  inherited ToolBar1: TToolBar
+    Size.Width = 768.000000000000000000
+    Size.Height = 44.000000000000000000
+    inherited ButtonAdd: TButton
+      Position.X = 719.000000000000000000
+      Size.Width = 44.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+    inherited ButtonBack: TButton
+      Size.Width = 60.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+    inherited Label1: TLabel
+      Size.Width = 768.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+    inherited SpeedButton2: TSpeedButton
+      Position.X = 672.000000000000000000
+      Size.Width = 42.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+    inherited SpeedButton1: TSpeedButton
+      Position.X = 630.000000000000000000
+      Size.Width = 42.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+  end
+  inherited TabControl1: TTabControl
+    Size.Width = 768.000000000000000000
+    Size.Height = 960.000000000000000000
+    inherited TabItemList: TTabItem
+      Size.Width = 192.000000000000000000
+      inherited Layout5: TLayout
+        inherited ToolBar4: TToolBar
+          Size.Height = 44.000000000000000000
+          inherited RefreshList: TButton
+            Position.X = 1.000000000000000000
+            Size.Width = 44.000000000000000000
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+    end
+    inherited TabItemDetails: TTabItem
+      Size.Width = 192.000000000000000000
+      inherited EditTitle: TEdit
+        Size.Width = 758.000000000000000000
+        Size.Height = 30.000000000000000000
+      end
+      inherited MemoDescription: TMemo
+        Size.Width = 768.000000000000000000
+        Size.Height = 827.000000000000000000
+        Viewport.Width = 760.000000000000000000
+        Viewport.Height = 819.000000000000000000
+      end
+      inherited Layout3: TLayout
+        Position.Y = 867.000000000000000000
+        Size.Width = 768.000000000000000000
+        inherited ToolBar3: TToolBar
+          Size.Width = 768.000000000000000000
+          Size.Height = 44.000000000000000000
+          inherited Button2: TButton
+            Size.Width = 60.000000000000000000
+            Size.Height = 44.000000000000000000
+          end
+          inherited Button3: TButton
+            Position.X = 719.000000000000000000
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+    end
+    inherited TabItemAdd: TTabItem
+      Size.Width = 192.000000000000000000
+      inherited Layout1: TLayout
+        inherited BottomToolbar: TToolBar
+          Size.Height = 44.000000000000000000
+          inherited ButtonSaveAdd: TButton
+            Size.Height = 44.000000000000000000
+          end
+          inherited ButtonCancelAdd: TButton
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+      inherited MemoAddDescription: TMemo
+        Size.Height = -34.000000000000000000
+        Viewport.Width = 42.000000000000000000
+        Viewport.Height = 0.000000000000000000
+      end
+      inherited EditAddTitle: TEdit
+        Size.Height = 30.000000000000000000
+      end
+    end
+    inherited TabItemEdit: TTabItem
+      Size.Width = 192.000000000000000000
+      inherited EditEditTitle: TEdit
+        Size.Height = 30.000000000000000000
+      end
+      inherited Layout2: TLayout
+        inherited ToolBar2: TToolBar
+          Size.Height = 44.000000000000000000
+          inherited ButtonEditCancel: TButton
+            Size.Height = 44.000000000000000000
+          end
+          inherited ButtonEditSave: TButton
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+      inherited MemoEditContent: TMemo
+        Size.Height = -34.000000000000000000
+        Viewport.Width = 42.000000000000000000
+        Viewport.Height = 0.000000000000000000
+      end
+    end
+  end
+end

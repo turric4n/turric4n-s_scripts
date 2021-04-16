@@ -1,0 +1,15 @@
+# Accept everything on the loopback interface
+iptables -A INPUT -i lo -j ACCEPT
+# Accept ICMP
+iptables -A INPUT -p icmp --icmp-type any -j ACCEPT
+# Drop oddball packets
+iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
+iptables -A INPUT -f -j DROP
+iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
+iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+# Accept packets that are part of established connections
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+# Accept selected incoming connections, e.g. ssh from 10.0.42.x
+iptables -A INPUT -p tcp --dport 22 -s 10.0.42.0/24 -j ACCEPT
+# Reject incoming connections that aren't explicitly accepted
+iptables -A INPUT -j REJECT

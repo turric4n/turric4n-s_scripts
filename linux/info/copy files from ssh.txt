@@ -1,1 +1,4 @@
 scp sourcefile efuentes@hostname:/dest
+scp file.txt username@to_host:/remote/directory/
+scp -r username@from_host:/remote/directory/  /local/directory/
+scp -r /local/directory/ username@to_host:/remote/directory/

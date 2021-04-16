@@ -1,0 +1,18 @@
+sudo growpart /dev/xvda //numero partición lógica
+
+sudo lvm pvresize /dev/xvda num
+
+sudo lvextend -l +100%FREE /dev/mapper/name
+
+sudo resize2fs /dev/mapper/name
+
+// alternative method
+
+sudo growpart /dev/xvda //numero partición lógica
+
+sudo lvexted -l +100%FREE /dev/mapper/partition
+
+sudo resize2fs /dev/mapper/partition
+
+
+

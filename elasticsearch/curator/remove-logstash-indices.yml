@@ -22,4 +22,4 @@ actions:
       stats_result: min_value
       direction: older
       unit: days
-      unit_count: 30
+      unit_count: 365

@@ -1,0 +1,9 @@
+# BLOCK INFO
+lsblk -f
+# EDIT FSTAB
+sudo vim /etc/fstab
+# REMOUNT
+mount -a
+
+# MOUNT NEW DEVICE
+mount -t ntfs /dev/sda1  /mnt/
