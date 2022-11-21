@@ -1,0 +1,55 @@
+You will need two network cards in the gateway computer, or a PPP interface and a network card. One network card (or PPP interface) connects to the Internet. We will call this card eth0. The other card connects to your internal network. We will call this eth1. It is also possible to do ICS with a single network card. In this case, use eth0 for the Internet and eth0:0 for the internal network.
+
+Internet <<==>> eth0 <> Ubuntu gateway <> eth1 <<==>> Client PC
+
+Internet <<==>> ppp0 <> Ubuntu gateway <> eth1 <<==>> Client PC
+
+Internet <<==>> eth0 <> Ubuntu gateway <> eth0:0 <<==>> Client PC
+
+Gateway set up
+The following example will focus on the most common gateway setup: an Ubuntu computer with two wired network adapters (eth0 and eth1) hosting ICS to a static internal network configured for the 192.168.0.x subnet.
+
+For this example, eth0 is used to represent the network card connected to the Internet, and eth1 represents the network card connected to a client PC. You can replace eth0 and eth1 as needed for your situation. Also, any private IP subnet can be used for the internal network IP addresses.
+
+In summary:
+
+eth0 = the network adapter with internet (external or WAN).
+eth1 = the network adapter to which a second computer is attached (internal or LAN).
+192.168.0.x = IP subnet for eth1
+
+Your setup may be different. If so, make sure to change them accordingly in the following commands.
+
+Configure internal network card
+Configure your internal network card (eth1) for static IP like so:
+
+sudo ip addr add 192.168.0.1/24 dev eth1
+The external and internal network cards cannot be on the same subnet.
+
+Configure NAT
+Configure iptables for NAT translation so that packets can be correctly routed through the Ubuntu gateway.
+
+sudo iptables -A FORWARD -o eth0 -i eth1 -s 192.168.0.0/24 -m conntrack --ctstate NEW -j ACCEPT
+sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t nat -F POSTROUTING
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+The first rule allows forwarded packets (initial ones). The second rule allows forwarding of established connection packets (and those related to ones that started). The third rule does the NAT.
+
+IPtables settings need to be set-up at each boot (they are not saved automatically), with the following commands:
+
+Save the iptables:
+
+sudo iptables-save | sudo tee /etc/iptables.sav
+Edit /etc/rc.local and add the following lines before the "exit 0" line:
+
+
+iptables-restore < /etc/iptables.sav
+Enable routing
+Configure the gateway for routing between two interfaces by enabling IP forwarding:
+
+sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+
+Edit /etc/sysctl.conf, and (up to 10.04) add these lines:
+
+
+net.ipv4.conf.default.forwarding=1
+net.ipv4.conf.all.forwarding=1
