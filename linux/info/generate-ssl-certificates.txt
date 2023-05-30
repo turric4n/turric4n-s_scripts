@@ -1,0 +1,22 @@
+openssl genrsa -out ca-key.pem 2048
+openssl req -x509 -new -nodes -key ca-key.pem -days 10000 -out ca.pem -subj '/CN=*'
+openssl genrsa -out key.pem 2048
+
+touch openssl.cnf
+
+[req]
+req_extensions = v3_req
+distinguished_name = req_distinguished_name
+[req_distinguished_name]
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth, clientAuth
+
+#Client
+openssl req -new -key key.pem -out cert.csr -subj '/CN=*' -config openssl.cnf
+openssl x509 -req -in cert.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out client-cert.pem -days 10000 -extensions v3_req -extfile openssl.cnf
+
+#Server
+openssl req -new -key key.pem -out cert.csr -subj '/CN=*' -config openssl.cnf
+openssl x509 -req -in cert.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out cert.pem -days 10000 -extensions v3_req -extfile openssl.cnf
