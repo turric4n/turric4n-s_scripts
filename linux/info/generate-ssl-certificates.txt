@@ -4,6 +4,8 @@ openssl genrsa -out key.pem 2048
 
 touch openssl.cnf
 
+vim openssl.cnf
+
 [req]
 req_extensions = v3_req
 distinguished_name = req_distinguished_name
