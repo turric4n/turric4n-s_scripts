@@ -1,0 +1,11 @@
+docker service ls --format "{{.Name}}" | while read service_name
+do
+    docker service ps --filter desired-state=running \
+        --format "{{.ID}} {{.Name}}" \
+        $service_name | while read id name ignore 
+    do
+        echo "$name $(docker inspect \
+                  --format '{{range $conf := (index (index .NetworksAttachments))}}{{.Addresses}}{{end}}' \
+                  $id)"
+    done
+done

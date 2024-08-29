@@ -1,0 +1,5 @@
+# Get Size
+sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"
+
+# Truncate container log files
+sudo find /var/lib/docker/containers/ -type f -name "*.log" -delete
