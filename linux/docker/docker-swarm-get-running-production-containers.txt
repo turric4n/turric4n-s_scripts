@@ -1,0 +1,1 @@
+docker service ls --format "{{.ID}} {{.Name}}" | grep -i -e '-production' | awk '{print $1}' | xargs -I {} docker service ps {} --filter "desired-state=running" --format "{{.ID}}" | wc -l
